@@ -1,7 +1,8 @@
-import { Component }            from 'angular2/core';
+import { Component, provide }   from 'angular2/core';
 import { HeroListComponent }    from './hero-list.component';
 import { HeroService }          from './hero.service';
 import { Logger }               from './logger.service';
+import { APP_CONFIG, CONFIG }   from './app-config';
 
 @Component({
     selector: 'my-heroes',
@@ -29,7 +30,7 @@ import { Logger }               from './logger.service';
      providers: [provide(Logger, {useValue: silentLogger})]
 
    */
-    providers: [HeroService, Logger],
+    providers: [HeroService, Logger, provide(APP_CONFIG, {useValue: CONFIG } )],
 
     directives: [HeroListComponent]
 })
