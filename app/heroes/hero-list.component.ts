@@ -1,5 +1,6 @@
 import { Component }   from 'angular2/core';
 import { HeroService }      from './hero.service';
+import { Hero } from './hero';
 
 @Component({
     selector: 'hero-list',
@@ -11,5 +12,10 @@ import { HeroService }      from './hero.service';
 })
 
 export class HeroListComponent {
-    heroes = (new HeroService()).getHeroes();
+    heroes: Hero[];
+
+    // Angular's DI will use providers property from HeroesComponent to resolve the HeroService dependency
+    constructor(heroService: HeroService) {
+        this.heroes  = heroService.getHeroes();
+    }
 }
