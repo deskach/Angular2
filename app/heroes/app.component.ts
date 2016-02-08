@@ -4,6 +4,7 @@ import {HeroListComponent}     from './hero-list.component';
 import {HeroDetailComponent}   from './hero-detail.component';
 import {HeroService}           from './hero.service';
 import {CrisisCenterComponent} from "../crisis-center/crisis-center.component";
+import {DialogService} from "../dialog.service";
 
 @Component({
     selector: 'my-app',
@@ -15,7 +16,7 @@ import {CrisisCenterComponent} from "../crisis-center/crisis-center.component";
     </nav>
     <router-outlet></router-outlet>
   `,
-    providers: [HeroService],
+    providers: [HeroService, DialogService],
     directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([

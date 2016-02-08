@@ -2,7 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 import {Crisis, CrisisService} from './crisis.service';
 import {RouteParams, Router} from 'angular2/router';
 import {CanDeactivate, ComponentInstruction} from 'angular2/router';
-//import {DialogService} from '../dialog.service';
+import {DialogService} from '../dialog.service';
 
 @Component({
     template: `
@@ -23,12 +23,14 @@ import {CanDeactivate, ComponentInstruction} from 'angular2/router';
 export class CrisisDetailComponent implements OnInit, CanDeactivate {
     crisis: Crisis;
     editName: string;
+
     constructor(
         private _service: CrisisService,
         private _router: Router,
-        private _routeParams: RouteParams
-        //private _dialog: DialogService
+        private _routeParams: RouteParams,
+        private _dialog: DialogService
     ) { }
+
     ngOnInit() {
         let id = +this._routeParams.get('id');
         this._service.getCrisis(id).then(crisis => {
@@ -40,6 +42,7 @@ export class CrisisDetailComponent implements OnInit, CanDeactivate {
             }
         });
     }
+
     routerCanDeactivate(next: ComponentInstruction, prev: ComponentInstruction) : any {
         // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged.
         if (!this.crisis || this.crisis.name === this.editName) {
@@ -49,14 +52,17 @@ export class CrisisDetailComponent implements OnInit, CanDeactivate {
         // promise which resolves to true or false when the user decides
         return this._dialog.confirm('Discard changes?');
     }
+
     cancel() {
         this.editName = this.crisis.name;
         this.gotoCrises();
     }
+
     save() {
         this.crisis.name = this.editName;
         this.gotoCrises();
     }
+
     gotoCrises() {
         // Like <a [routerLink]="['CrisisCenter']">Crisis Center</a
         this._router.navigate(['CrisisCenter']);
