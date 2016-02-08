@@ -1,9 +1,9 @@
 import {Component}   from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {CrisisListComponent}   from './crisis-list.component';
 import {HeroListComponent}     from './hero-list.component';
 import {HeroDetailComponent}   from './hero-detail.component';
 import {HeroService}           from './hero.service';
+import {CrisisCenterComponent} from "../crisis-center/crisis-center.component";
 
 @Component({
     selector: 'my-app',
@@ -15,12 +15,18 @@ import {HeroService}           from './hero.service';
     </nav>
     <router-outlet></router-outlet>
   `,
-    providers:  [HeroService],
+    providers: [HeroService],
     directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-    {path:'/crisis-center', name: 'CrisisCenter', component: CrisisListComponent},
-    {path:'/heroes',        name: 'Heroes',       component: HeroListComponent},
-    {path:'/hero/:id',      name: 'HeroDetail',   component: HeroDetailComponent}
+    { // Crisis Center child route
+        path: '/crisis-center/...',
+        name: 'CrisisCenter',
+        component: CrisisCenterComponent,
+        useAsDefault: true
+    },
+    {path: '/heroes', name: 'Heroes', component: HeroListComponent},
+    {path: '/hero/:id', name: 'HeroDetail', component: HeroDetailComponent}
 ])
-export class AppComponent { }
+export class AppComponent {
+}
