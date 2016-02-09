@@ -26,6 +26,12 @@ export class HeroDetailComponent implements OnInit {
     }
 
     ngOnInit() {
+        /*
+         Angular will call ngOnInit when we navigate to the HeroDetailComponent.
+         We too can call that ngOnInit method in our tests if we wish ...
+         after taking control of the injected HeroService and (perhaps) mocking it.
+         */
+
         let id = this._routeParams.get('id');
 
         this._service.getHero(id).then(hero => this.hero = hero);
@@ -37,6 +43,6 @@ export class HeroDetailComponent implements OnInit {
         // so that the HeroList component can select that hero.
         // Add a totally useless `foo` parameter for kicks.
 
-        this._router.navigate(['Heroes',  {id: heroId, foo: 'foo'} ]);
+        this._router.navigate(['Heroes', {id: heroId, foo: 'foo'}]);
     }
 }

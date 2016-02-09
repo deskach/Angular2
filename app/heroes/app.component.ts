@@ -13,6 +13,7 @@ import {DialogService} from "../dialog.service";
     <nav>
       <a [routerLink]="['CrisisCenter']">Crisis Center</a>
       <a [routerLink]="['Heroes']">Heroes</a>
+      <!--<a [routerLink]="['CrisisCenter', 'CrisisDetail', {id:1}]">Princess Crisis</a>-->
     </nav>
     <router-outlet></router-outlet>
   `,
@@ -27,7 +28,8 @@ import {DialogService} from "../dialog.service";
         useAsDefault: true
     },
     {path: '/heroes', name: 'Heroes', component: HeroListComponent},
-    {path: '/hero/:id', name: 'HeroDetail', component: HeroDetailComponent}
+    {path: '/hero/:id', name: 'HeroDetail', component: HeroDetailComponent},
+    //{path: '/disaster', name: 'Asteroid', redirectTo: ['CrisisCenter', 'CrisisDetail', {id:3}]}
 ])
 export class AppComponent {
 }
