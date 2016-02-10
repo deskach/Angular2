@@ -1,7 +1,9 @@
 import {Component} from 'angular2/core';
+import {HighlightDirective} from './highlight.directive';
 
 @Component({
     selector: 'my-app',
-    template: '<h1>Hello world!\n</h1>'
+    templateUrl: 'app/app.component.html',
+    directives: [HighlightDirective]
 })
 export class AppComponent { }
