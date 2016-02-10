@@ -15,7 +15,7 @@ export class HighlightDirective {
     onMouseLeave() { this._highlight(null); }
 
     private _highlight(color: string) {
-        this.el.nativeElement.style.backgroundColor = color;
+        this._el.nativeElement.style.backgroundColor = color;
     }
 }
 
