@@ -8,19 +8,28 @@ import {Directive, ElementRef, Input} from 'angular2/core';
     }
 })
 export class HighlightDirective {
-    constructor(private _el: ElementRef) {
+    @Input('myHighlight') highlightColor:string;
+
+    private _defaultColor = 'red';
+
+    constructor(private el:ElementRef) {
     }
 
-    onMouseEnter() { this._highlight("yellow"); }
-    onMouseLeave() { this._highlight(null); }
+    onMouseEnter() {
+        this._highlight(this.highlightColor || this._defaultColor);
+    }
 
-    private _highlight(color: string) {
-        this._el.nativeElement.style.backgroundColor = color;
+    onMouseLeave() {
+        this._highlight(null);
+    }
+
+    private _highlight(color:string) {
+        this.el.nativeElement.style.backgroundColor = color;
     }
 }
 
 /*
-Notes:
+ Notes:
  - Angular creates a new instance of the directive's controller class for each matching element,
  injecting an Angular ElementRef into the constructor.
 
