@@ -8,10 +8,14 @@ import {Directive, ElementRef, Input} from 'angular2/core';
     }
 })
 export class HighlightDirective {
+    private _defaultColor = 'red';
+    public color:string = this._defaultColor;
+
     @Input('myHighlight') highlightColor:string;
 
-    private _defaultColor = 'red';
-    public color: string = this._defaultColor;
+    @Input() set defaultColor(colorName:string) {
+        this._defaultColor = colorName || this._defaultColor;
+    }
 
     constructor(private el:ElementRef) {
     }
