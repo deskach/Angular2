@@ -9,7 +9,11 @@ import {Directive, ElementRef, Input} from 'angular2/core';
 })
 export class HighlightDirective {
     private _defaultColor = 'red';
-    public color:string = this._defaultColor;
+
+    //public color:string = this._defaultColor;
+    /*
+     The 'color' in [myHighlight]="color" is a binding source. A source property doesn't require a declaration.
+     */
 
     @Input('myHighlight') highlightColor:string;
 
