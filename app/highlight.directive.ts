@@ -11,6 +11,7 @@ export class HighlightDirective {
     @Input('myHighlight') highlightColor:string;
 
     private _defaultColor = 'red';
+    public color: string = this._defaultColor;
 
     constructor(private el:ElementRef) {
     }
