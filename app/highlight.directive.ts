@@ -1,7 +1,7 @@
 import {Directive, ElementRef, Input} from 'angular2/core';
 
 @Directive({
-    selector: '[myHighlight]',
+    selector: '[myHighlight]',  //CSS attribute selector (in brackets) that identifies our directive.
     host: {
         '(mouseenter)': 'onMouseEnter()',
         '(mouseleave)': 'onMouseLeave()'
