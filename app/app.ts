@@ -3,7 +3,7 @@ import {Zippy} from "./zippy/zippy";
 
 @Component({
     selector: 'the-app',
-    template: `<zippy></zippy>`,
+    template: `<zippy zippy-title="Details"></zippy>`,
     directives: [Zippy]
 })
 export class TheApp {
