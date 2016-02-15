@@ -2,8 +2,10 @@
   "name": "angular2-quickstart",
   "version": "1.0.0",
   "scripts": {
+    "test": "live-server --open=src/unit-tests.html",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
+    "live": "live-server",
     "lite": "lite-server",
     "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
   },
