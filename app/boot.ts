@@ -1,4 +1,4 @@
 import {bootstrap}    from 'angular2/platform/browser'
-import {AppComponent} from './app.component'
+import {TheApp} from "./app";
 
-bootstrap(AppComponent);
+bootstrap(TheApp);
