@@ -25,28 +25,13 @@
     });
 
     // #3. Import the spec file explicitly
-    var specs = ['app/hero/hero.spec', 'app/1st.spec', 'app/init-caps/init-caps.pipe.spec'];
-    var done = specs.length + 1;
-
-    for (var i = 1; i <= specs.length; i++) {
-        done = done ^ i;
-    }
-
-    specs.forEach(function(specItem, idx) {
-        System.import(specItem)
-                // #4. wait for all imports to load ...
-                //     then re-execute `window.onload` which
-                //     triggers the Jasmine test-runner start
-                //     or explain what went wrong
-                .then(function() {
-                    done = done ^ (idx + 1);
-
-                    if (done === specs.length + 1) {
-                        window.onload();
-                    }
-                })
-                .catch(console.error.bind(console));
-    });
+    Promise.all([
+        System.import('app/hero/hero.spec'),
+        System.import('app/1st.spec'),
+        System.import('app/init-caps/init-caps.pipe.spec')
+    ])
+            .then(window.onload)
+            .catch(console.error.bind(console));
 
 </script>
 </body>
