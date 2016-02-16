@@ -22,20 +22,10 @@
 
     // #3. Import the spec file explicitly
     var specs = ['app/hero/hero.spec', 'app/1st.spec'];
-    var done = [];
+    var done = specs.length + 1;
 
-    for (var i = 0; i < specs.length; i++) {
-        done.push(false);
-    }
-
-    function isAllLoaded() {
-        for (i in specs) {
-            if (!done[i]) {
-                return false;
-            }
-        }
-
-        return true;
+    for (var i = 1; i <= specs.length; i++) {
+        done = done ^ i;
     }
 
     specs.forEach(function(specItem, idx) {
@@ -45,14 +35,13 @@
                 //     triggers the Jasmine test-runner start
                 //     or explain what went wrong
                 .then(function() {
-                    done[idx] = true;
+                    done = done ^ (idx + 1);
 
-                    if (isAllLoaded()) {
+                    if (done === specs.length + 1) {
                         window.onload();
                     }
                 })
                 .catch(console.error.bind(console));
-
     });
 
 </script>
