@@ -2,7 +2,7 @@
   "name": "angular2-quickstart",
   "version": "1.0.0",
   "scripts": {
-    "test": "live-server --open=src/unit-tests.html",
+    "test": "live-server --open=unit-tests.html",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "live": "live-server",
