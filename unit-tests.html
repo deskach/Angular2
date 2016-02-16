@@ -16,13 +16,12 @@
     //     for imports from the app folder
     System.config({
         packages: {
-            'app': {defaultExtension: 'js'},
-            'hero': {defaultExtension: 'js'}
+            'app': {defaultExtension: 'js'}
         }
     });
 
     // #3. Import the spec file explicitly
-    var specs = ['hero/hero.spec', 'app/1st.spec'];
+    var specs = ['app/hero/hero.spec', 'app/1st.spec'];
     var done = [];
 
     for (var i = 0; i < specs.length; i++) {
