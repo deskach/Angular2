@@ -31,7 +31,7 @@
 
     function isAllLoaded() {
         for (i in specs) {
-            if (!specs[i]) {
+            if (!done[i]) {
                 return false;
             }
         }
@@ -39,29 +39,23 @@
         return true;
     }
 
-    for (var spec in specs) {
-        System.import(specs[spec])
+    specs.forEach(function(specItem, idx) {
+        System.import(specItem)
                 // #4. wait for all imports to load ...
                 //     then re-execute `window.onload` which
                 //     triggers the Jasmine test-runner start
                 //     or explain what went wrong
                 .then(function() {
-                    done[spec] = true;
+                    done[idx] = true;
 
                     if (isAllLoaded()) {
-                        window.onload;
+                        window.onload();
                     }
                 })
                 .catch(console.error.bind(console));
-    }
 
-    System.import('hero/hero.spec')
-            // #4. wait for all imports to load ...
-            //     then re-execute `window.onload` which
-            //     triggers the Jasmine test-runner start
-            //     or explain what went wrong
-            .then(window.onload)
-            .catch(console.error.bind(console));
+    });
+
 </script>
 </body>
 </html>
